@@ -1,3 +1,13 @@
-#chat {
-    height: 70px;
+#message-send {
+    position: absolute;
+    bottom: 0%;
+}
+
+#message-send:focus {
+    border-style: none;
+    outline: none;
+}
+
+#messages {
+    overflow-y: scroll;
 }

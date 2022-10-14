@@ -8,7 +8,7 @@ const SearchBar = () => {
         if (input === "") {
             setSearched(undefined);
         } else {
-            socket.volatile.emit("users-search", input);
+            socket.emit("users-search", input);
             socket.on("partial-search", (data: PartialSearch) => {
                 setSearched(data);
             });

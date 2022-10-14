@@ -9,6 +9,8 @@ export type GlobalContextType = {
     setSearched: React.Dispatch<
         React.SetStateAction<PartialSearch | undefined>
     >;
+    chats?: Chats;
+    setChats: React.Dispatch<React.SetStateAction<Chats | undefined>>;
 };
 
 export type User = {
@@ -36,3 +38,7 @@ export type SignupResponse = {
 export type PartialSearch = UserSearch[];
 
 export type UserSearch = Omit<User, "jwt"> & { password: string };
+
+export type Chats = {
+    chats: Omit<User, "jwt">[];
+};
