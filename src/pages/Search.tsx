@@ -36,7 +36,7 @@ const Search = () => {
                     );
                 })}
             </ul>
-            {user ? <Navigate to="/auth"></Navigate> : null}
+            {!user ? <Navigate to="/auth"></Navigate> : null}
         </div>
     );
 };

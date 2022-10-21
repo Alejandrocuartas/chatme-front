@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import logo from "../utils/logo";
 import { useGlobalState } from "../context";
@@ -17,8 +17,9 @@ function classNames(...classes: string[]) {
 export default function Example() {
     const { user, navState } = useGlobalState();
     const navigate = useNavigate();
+    const { state } = useLocation();
     return (
-        <Disclosure as="nav" className="bg-gray-800">
+        <Disclosure as="nav" className="bg-gray-800 sticky top-0">
             {({ open }) => (
                 <>
                     <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -47,6 +48,26 @@ export default function Example() {
                                         alt="Your Company"
                                     />
                                 </div>
+                                {navState === NavbarState.chat &&
+                                user &&
+                                state ? (
+                                    <div className="ml-4 flex flex-shrink-0 items-center">
+                                        <img
+                                            className="block h-8 w-auto lg:hidden rounded-full"
+                                            src={state.user.photo}
+                                            alt="Your Company"
+                                        />
+                                        <img
+                                            className="hidden h-8 w-auto lg:block"
+                                            src={state.user.photo}
+                                            alt="Your Company"
+                                        />
+                                        <h5 className="mx-4 font-medium leading-tight text-base mt-2 mb-2 text-white">
+                                            {state.user.name}{" "}
+                                            {state.user.last_name}
+                                        </h5>
+                                    </div>
+                                ) : null}
                             </div>
                             {navState === NavbarState.search ? (
                                 <SearchBar />

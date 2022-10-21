@@ -7,15 +7,14 @@ import chatsQuery from "../queries/chats";
 import { Chats } from "../types";
 const Chats = () => {
     const { user, setChats, chats } = useGlobalState();
-    const {
-        loading,
-        error,
-        data: Chats,
-    } = useQuery(chatsQuery, {
+    const { loading, error, refetch } = useQuery(chatsQuery, {
         onCompleted: (data: Chats) => {
             setChats(data);
         },
     });
+    React.useEffect(() => {
+        refetch();
+    }, []);
     if (loading) {
         return (
             <h1 className="mx-4 font-medium leading-tight text-base mt-0 mb-2 text-white-600">
@@ -30,9 +29,11 @@ const Chats = () => {
         return (
             <h1 className="mx-4 font-medium leading-tight text-base mt-0 mb-2 text-white-600">
                 Waiting for chats...
+                {!user ? <Navigate to="/auth"></Navigate> : null}
             </h1>
         );
     }
+
     return (
         <div>
             {chats?.chats.map((c) => {

@@ -19,7 +19,7 @@ const Chat = ({
                 })
             }
             id="chat"
-            className="bg-blue-100 hover:bg-blue-300 px-6 py-2 border-b border-gray-100 w-full flex justify-start items-center"
+            className="bg-blue-100 hover:bg-blue-300 px-6 py-2 border-b border-gray-100 w-full flex justify-start items-center cursor-pointer"
         >
             <img
                 className="h-12 w-12 rounded-full"

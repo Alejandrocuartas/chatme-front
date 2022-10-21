@@ -34,6 +34,7 @@ const Signup = ({ signIn }: { signIn: () => void }) => {
                         jwt,
                     });
                     setLoading(false);
+                    sessionStorage.setItem("jwt", jwt);
                     navigate("/");
                 }
             })

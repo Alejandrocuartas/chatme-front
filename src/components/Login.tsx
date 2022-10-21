@@ -16,7 +16,6 @@ const Login = ({ signUp }: { signUp: () => void }) => {
                 ...user,
                 jwt,
             });
-            // @ts-ignore
             sessionStorage.setItem("jwt", jwt);
             navigate("/");
         },
