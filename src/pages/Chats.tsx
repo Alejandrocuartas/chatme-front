@@ -11,6 +11,11 @@ const Chats = () => {
         onCompleted: (data: Chats) => {
             setChats(data);
         },
+        context: {
+            headers: {
+                Authorization: `Bearer ${user?.jwt}`,
+            },
+        },
     });
     React.useEffect(() => {
         refetch();

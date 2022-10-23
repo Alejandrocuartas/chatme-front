@@ -10,7 +10,13 @@ import newMessage from "../queries/newMessage";
 const Messages = () => {
     const { setNavState, user, socket } = useGlobalState();
     const navigate = useNavigate();
-    const [submitMessage, { data }] = useMutation(newMessage);
+    const [submitMessage] = useMutation(newMessage, {
+        context: {
+            headers: {
+                Authorization: `Bearer ${user?.jwt}`,
+            },
+        },
+    });
 
     const { id } = useParams();
     const [messages, setMessages] = useState<any[]>([]);
@@ -22,6 +28,11 @@ const Messages = () => {
         },
         onCompleted(data) {
             setMessages(data.messages);
+        },
+        context: {
+            headers: {
+                Authorization: `Bearer ${user?.jwt}`,
+            },
         },
     });
     const setMessage = (e: any) => {
