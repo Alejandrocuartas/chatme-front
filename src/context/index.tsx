@@ -2,6 +2,7 @@ import React, { useState, createContext, useContext } from "react";
 import { io } from "socket.io-client";
 import { GlobalContextType, PartialSearch, User, Chats } from "../types";
 import { NavbarState } from "../utils/enums";
+import api from "../utils/api";
 // @ts-ignore
 const logContext = createContext<GlobalContextType>();
 const Context = ({ children }: { children: JSX.Element }) => {
@@ -10,7 +11,7 @@ const Context = ({ children }: { children: JSX.Element }) => {
     const [searched, setSearched] = useState<PartialSearch | undefined>();
     const [chats, setChats] = useState<Chats | undefined>();
     const defaultContext: GlobalContextType = {
-        socket: io("http://localhost:3000"),
+        socket: io(api),
         user,
         setUser,
         navState,

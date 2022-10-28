@@ -31,7 +31,11 @@ const Login = ({ signUp }: { signUp: () => void }) => {
         return logIn({ variables });
     };
     if (error) {
-        alert(error.message);
+        if (error.message.includes("does not exist")) {
+            alert("The user with the username does not exist.");
+        } else {
+            alert(error.message);
+        }
     }
     return (
         <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">

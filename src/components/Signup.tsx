@@ -44,6 +44,7 @@ const Signup = ({ signIn }: { signIn: () => void }) => {
                 ) {
                     return alert("Username already exists.");
                 } else {
+                    console.log(err.message);
                     alert("Unexpected error");
                 }
             });
